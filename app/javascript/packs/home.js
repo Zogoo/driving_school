@@ -14,6 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     i18n,
     vuetify,
     render: (h) => h(App),
-  }).$mount();
+  }).$mount("#app");
   document.body.appendChild(app.$el);
 });
