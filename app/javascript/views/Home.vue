@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-btn>Vuetifyのボタン</v-btn>
     <div>
+      <v-btn>Vuetifyのボタン</v-btn>
       <p>{{ message }}</p>
     </div>
   </v-app>

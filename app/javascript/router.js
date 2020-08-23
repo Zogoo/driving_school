@@ -8,7 +8,12 @@ export default new VueRouter({
   routes: [
     {
       path: "/",
-      component: () => import('./views/Home')
+      component: () => import("./views/Home"),
+      meta: { authRequired: true }
+    },
+    { 
+      path: "/login", 
+      component: () => import("./views/Login"),
     },
   ],
 });
