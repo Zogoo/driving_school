@@ -50,6 +50,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Email opener
   gem "letter_opener"
+  # Code style
+  gem "rubocop"
 end
 
 group :test do
