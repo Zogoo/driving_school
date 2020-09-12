@@ -31,6 +31,7 @@ gem 'devise-encryptable'
 gem 'bcrypt'
 gem 'doorkeeper'
 gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
