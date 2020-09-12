@@ -33,6 +33,9 @@ gem 'doorkeeper'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+# Environment variable management gem
+gem 'dotenv-rails'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
