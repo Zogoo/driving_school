@@ -1,0 +1,2 @@
+class TheoryLesson < ApplicationRecord
+end
