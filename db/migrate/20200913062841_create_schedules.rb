@@ -6,6 +6,7 @@ class CreateSchedules < ActiveRecord::Migration[6.0]
       t.references :theory_lessons, foreign_key: { on_delete: :cascade }
 
       t.string :title
+      t.string :status
       t.datetime :start
       t.datetime :finish
 

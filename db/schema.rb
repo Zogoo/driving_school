@@ -19,7 +19,13 @@ ActiveRecord::Schema.define(version: 2020_09_13_140524) do
     t.integer "theory_lessons_id"
     t.integer "driving_lessons_id"
     t.string "type"
+    t.string "title"
+    t.datetime "start"
     t.integer "duration"
+    t.string "status"
+    t.string "cancel_reason"
+    t.integer "cost"
+    t.boolean "refunded"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["driving_lessons_id"], name: "index_bookings_on_driving_lessons_id"
@@ -123,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_140524) do
     t.integer "driving_lessons_id"
     t.integer "theory_lessons_id"
     t.string "title"
+    t.string "status"
     t.datetime "start"
     t.datetime "finish"
     t.datetime "created_at", precision: 6, null: false
@@ -206,6 +213,17 @@ ActiveRecord::Schema.define(version: 2020_09_13_140524) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "provider"
