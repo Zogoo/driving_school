@@ -10,7 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_12_093449) do
+ActiveRecord::Schema.define(version: 2020_09_13_140524) do
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "teachers_id"
+    t.integer "students_id"
+    t.integer "schedules_id"
+    t.integer "theory_lessons_id"
+    t.integer "driving_lessons_id"
+    t.string "type"
+    t.integer "duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["driving_lessons_id"], name: "index_bookings_on_driving_lessons_id"
+    t.index ["schedules_id"], name: "index_bookings_on_schedules_id"
+    t.index ["students_id"], name: "index_bookings_on_students_id"
+    t.index ["teachers_id"], name: "index_bookings_on_teachers_id"
+    t.index ["theory_lessons_id"], name: "index_bookings_on_theory_lessons_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_companies_on_name", unique: true
+  end
+
+  create_table "driving_lessons", force: :cascade do |t|
+    t.integer "companies_id"
+    t.integer "teachers_id"
+    t.integer "schedules_id"
+    t.integer "bookings_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bookings_id"], name: "index_driving_lessons_on_bookings_id"
+    t.index ["companies_id"], name: "index_driving_lessons_on_companies_id"
+    t.index ["schedules_id"], name: "index_driving_lessons_on_schedules_id"
+    t.index ["teachers_id"], name: "index_driving_lessons_on_teachers_id"
+  end
+
+  create_table "lesson_attachments", force: :cascade do |t|
+    t.integer "theory_lessons_id"
+    t.integer "driving_lessons_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["driving_lessons_id"], name: "index_lesson_attachments_on_driving_lessons_id"
+    t.index ["theory_lessons_id"], name: "index_lesson_attachments_on_theory_lessons_id"
+  end
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
@@ -54,6 +100,106 @@ ActiveRecord::Schema.define(version: 2020_09_12_093449) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.integer "users_id"
+    t.string "portrait"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "family_name"
+    t.string "registration_number"
+    t.string "gender"
+    t.date "birthday"
+    t.string "mobile_number"
+    t.string "tel_number"
+    t.string "home_address"
+    t.string "work_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_profiles_on_users_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "teachers_id"
+    t.integer "driving_lessons_id"
+    t.integer "theory_lessons_id"
+    t.string "title"
+    t.datetime "start"
+    t.datetime "finish"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["driving_lessons_id"], name: "index_schedules_on_driving_lessons_id"
+    t.index ["teachers_id"], name: "index_schedules_on_teachers_id"
+    t.index ["theory_lessons_id"], name: "index_schedules_on_theory_lessons_id"
+    t.index ["title"], name: "index_schedules_on_title"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.integer "companies_id"
+    t.integer "foreign_key_id"
+    t.integer "users_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["companies_id"], name: "index_students_on_companies_id"
+    t.index ["foreign_key_id"], name: "index_students_on_foreign_key_id"
+    t.index ["users_id"], name: "index_students_on_users_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.integer "companies_id"
+    t.integer "foreign_key_id"
+    t.integer "users_id"
+    t.string "title"
+    t.string "experience"
+    t.integer "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["companies_id"], name: "index_teachers_on_companies_id"
+    t.index ["foreign_key_id"], name: "index_teachers_on_foreign_key_id"
+    t.index ["users_id"], name: "index_teachers_on_users_id"
+  end
+
+  create_table "theory_exam_attachments", force: :cascade do |t|
+    t.integer "theory_exams_id"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["theory_exams_id"], name: "index_theory_exam_attachments_on_theory_exams_id"
+  end
+
+  create_table "theory_exams", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "teachers_id"
+    t.integer "foreign_key_id"
+    t.integer "students_id"
+    t.string "title"
+    t.integer "duration"
+    t.text "content"
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_theory_exams_on_company_id"
+    t.index ["foreign_key_id"], name: "index_theory_exams_on_foreign_key_id"
+    t.index ["students_id"], name: "index_theory_exams_on_students_id"
+    t.index ["teachers_id"], name: "index_theory_exams_on_teachers_id"
+  end
+
+  create_table "theory_lessons", force: :cascade do |t|
+    t.integer "companies_id"
+    t.integer "teachers_id"
+    t.integer "schedules_id"
+    t.integer "bookings_id"
+    t.string "title"
+    t.integer "duration"
+    t.string "category"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bookings_id"], name: "index_theory_lessons_on_bookings_id"
+    t.index ["companies_id"], name: "index_theory_lessons_on_companies_id"
+    t.index ["schedules_id"], name: "index_theory_lessons_on_schedules_id"
+    t.index ["teachers_id"], name: "index_theory_lessons_on_teachers_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -70,6 +216,22 @@ ActiveRecord::Schema.define(version: 2020_09_12_093449) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "driving_lessons", column: "driving_lessons_id", on_delete: :cascade
+  add_foreign_key "bookings", "schedules", column: "schedules_id", on_delete: :cascade
+  add_foreign_key "bookings", "students", column: "students_id", on_delete: :cascade
+  add_foreign_key "bookings", "teachers", column: "teachers_id", on_delete: :cascade
+  add_foreign_key "bookings", "theory_lessons", column: "theory_lessons_id", on_delete: :cascade
+  add_foreign_key "driving_lessons", "teachers", column: "teachers_id", on_delete: :cascade
+  add_foreign_key "lesson_attachments", "driving_lessons", column: "driving_lessons_id", on_delete: :cascade
+  add_foreign_key "lesson_attachments", "theory_lessons", column: "theory_lessons_id", on_delete: :cascade
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "profiles", "users", column: "users_id", on_delete: :cascade
+  add_foreign_key "schedules", "driving_lessons", column: "driving_lessons_id", on_delete: :cascade
+  add_foreign_key "schedules", "teachers", column: "teachers_id", on_delete: :cascade
+  add_foreign_key "schedules", "theory_lessons", column: "theory_lessons_id", on_delete: :cascade
+  add_foreign_key "students", "users", column: "users_id"
+  add_foreign_key "teachers", "users", column: "users_id"
+  add_foreign_key "theory_exam_attachments", "theory_exams", column: "theory_exams_id"
+  add_foreign_key "theory_exams", "companies"
 end
