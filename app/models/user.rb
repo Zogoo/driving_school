@@ -29,4 +29,8 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  def user_name
+    profile.first_name
+  end
 end

@@ -103,6 +103,8 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     doorkeeper (5.4.0)
       railties (>= 5)
+    doorkeeper-jwt (0.4.0)
+      jwt (~> 2.1)
     doorkeeper-openid_connect (1.7.4)
       doorkeeper (>= 5.2, < 5.5)
       json-jwt (>= 1.11.0)
@@ -526,6 +528,7 @@ DEPENDENCIES
   devise
   devise-encryptable
   doorkeeper
+  doorkeeper-jwt
   doorkeeper-openid_connect
   dotenv-rails
   fog

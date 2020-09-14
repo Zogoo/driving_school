@@ -56,8 +56,12 @@ Doorkeeper::OpenidConnect.configure do
       resource_owner.email
     end
 
-    normal_claim :first_name do |resource_owner|
-      resource_owner.first_name
+    normal_claim :full_name do |resource_owner|
+      "#{resource_owner.first_name} #{resource_owner.last_name}"
+    end
+
+    claim :user_name, scope: :openid do |resource_owner, scopes, access_token|
+      scopes.exists?(:profile) ? resource_owner.user_name : "not_filled"
     end
   end
 end
