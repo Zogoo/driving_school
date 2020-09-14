@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'home#index'
+  root to: 'site#index'
   
   # Deep customized devise controllers
   devise_scope :user do
