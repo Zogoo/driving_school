@@ -30,6 +30,8 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'bcrypt'
 gem 'doorkeeper'
+gem 'doorkeeper-openid_connect'
+gem 'doorkeeper-jwt'
 gem 'omniauth'
 gem 'omniauth-facebook'
 

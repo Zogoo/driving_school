@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_13_140524) do
+ActiveRecord::Schema.define(version: 2020_09_14_125321) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "teachers_id"
@@ -104,6 +104,12 @@ ActiveRecord::Schema.define(version: 2020_09_13_140524) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
+  end
+
+  create_table "oauth_openid_requests", force: :cascade do |t|
+    t.integer "access_grant_id", null: false
+    t.string "nonce", null: false
+    t.index ["access_grant_id"], name: "index_oauth_openid_requests_on_access_grant_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -244,6 +250,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_140524) do
   add_foreign_key "lesson_attachments", "theory_lessons", column: "theory_lessons_id", on_delete: :cascade
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_openid_requests", "oauth_access_grants", column: "access_grant_id", on_delete: :cascade
   add_foreign_key "profiles", "users", column: "users_id", on_delete: :cascade
   add_foreign_key "schedules", "driving_lessons", column: "driving_lessons_id", on_delete: :cascade
   add_foreign_key "schedules", "teachers", column: "teachers_id", on_delete: :cascade

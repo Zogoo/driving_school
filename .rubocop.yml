@@ -1,0 +1,14 @@
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - config/routes.rb
+    - db/migrate/*.rb
+    - Rakefile
+    - Gemfile
+    - config/**/*
+    - bin/spring
+    - '**/*.json.jbuilder'
+    - bundler/**/*
+    - bin/**/*
+    - node_modules/**/*
+    - tmp/**/*

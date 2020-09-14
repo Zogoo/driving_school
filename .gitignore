@@ -45,3 +45,5 @@ vendor/bundle
 
 # Ignore keep file
 .keep
+
+.env.*

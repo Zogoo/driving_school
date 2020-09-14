@@ -7,7 +7,12 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    current_user || warden.authenticate!(scope: :user)
+    if current_user
+      current_user
+    else
+      redirect_to(new_user_session_url)
+      nil
+    end
   end
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
@@ -76,7 +81,7 @@ Doorkeeper.configure do
   # want to use API mode that will skip all the views management and change the way how
   # Doorkeeper responds to a requests.
   #
-  # api_only
+  api_only
 
   # Enforce token request content type to application/x-www-form-urlencoded.
   # It is not enabled by default to not break prior versions of the gem.
@@ -90,7 +95,7 @@ Doorkeeper.configure do
   # Access token expiration time (default: 2 hours).
   # If you want to disable expiration, set this to `nil`.
   #
-  # access_token_expires_in 2.hours
+  access_token_expires_in 2.hours
 
   # Assign custom TTL for access tokens. Will be used instead of access_token_expires_in
   # option if defined. In case the block returns `nil` value Doorkeeper fallbacks to
@@ -111,14 +116,14 @@ Doorkeeper.configure do
   # Use a custom class for generating the access token.
   # See https://doorkeeper.gitbook.io/guides/configuration/other-configurations#custom-access-token-generator
   #
-  # access_token_generator '::Doorkeeper::JWT'
+  access_token_generator '::Doorkeeper::JWT'
 
   # The controller +Doorkeeper::ApplicationController+ inherits from.
   # Defaults to +ActionController::Base+ unless +api_only+ is set, which changes the default to
   # +ActionController::API+. The return value of this option must be a stringified class name.
   # See https://doorkeeper.gitbook.io/guides/configuration/other-configurations#custom-base-controller
   #
-  # base_controller 'ApplicationController'
+  base_controller 'ApplicationController'
 
   # Reuse access token for the same resource owner within an application (disabled by default).
   #
@@ -210,7 +215,7 @@ Doorkeeper.configure do
   # `grant_type` - the grant type of the request (see Doorkeeper::OAuth)
   # `scopes` - the requested scopes (see Doorkeeper::OAuth::Scopes)
   #
-  # use_refresh_token
+  use_refresh_token
 
   # Provide support for an owner to be assigned to each registered application (disabled by default)
   # Optional parameter confirmation: true (default: false) if you want to enforce ownership of
@@ -341,7 +346,7 @@ Doorkeeper.configure do
   #   http://tools.ietf.org/html/rfc6819#section-4.4.2
   #   http://tools.ietf.org/html/rfc6819#section-4.4.3
   #
-  # grant_flows %w[authorization_code client_credentials]
+  grant_flows %w[authorization_code client_credentials]
 
   # Allows to customize OAuth grant flows that +each+ application support.
   # You can configure a custom block (or use a class respond to `#call`) that must
@@ -483,4 +488,50 @@ Doorkeeper.configure do
   # WWW-Authenticate Realm (default: "Doorkeeper").
   #
   # realm "Doorkeeper"
+end
+
+Doorkeeper::JWT.configure do
+  # Set the payload for the JWT token. This should contain unique information
+  # about the user. Defaults to a randomly generated token in a hash:
+  #     { token: "RANDOM-TOKEN" }
+  token_payload do |opts|
+    user = User.find(opts[:resource_owner_id])
+
+    {
+      iss: 'DriverSchool',
+      iat: Time.current.utc.to_i,
+
+      # @see JWT reserved claims - https://tools.ietf.org/html/draft-jones-json-web-token-07#page-7
+      jti: SecureRandom.uuid,
+
+      user: {
+        id: user.id,
+        email: user.email
+      }
+    }
+  end
+
+  # Optionally set additional headers for the JWT. See
+  # https://tools.ietf.org/html/rfc7515#section-4.1
+  token_headers do |opts|
+    { kid: opts[:application][:uid] }
+  end
+
+  # Use the application secret specified in the access grant token. Defaults to
+  # `false`. If you specify `use_application_secret true`, both `secret_key` and
+  # `secret_key_path` will be ignored.
+  use_application_secret false
+
+  # Set the encryption secret. This would be shared with any other applications
+  # that should be able to read the payload of the token. Defaults to "secret".
+  secret_key ENV['JWT_SECRET']
+
+  # If you want to use RS* encoding specify the path to the RSA key to use for
+  # signing. If you specify a `secret_key_path` it will be used instead of
+  # `secret_key`.
+  # secret_key_path File.join('path', 'to', 'file.pem')
+
+  # Specify encryption type (https://github.com/progrium/ruby-jwt). Defaults to
+  # `nil`.
+  encryption_method :hs512
 end

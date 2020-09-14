@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '80d7ba55a3afc40938db8432cb32d8dddef18fcc075ddee8c295d08e48106addc62fed99bb59dd67ed81e9b207ac9840013e941bfb9d4ce7b37e2788145de3e1'
+  config.secret_key = ENV['DEVISE_SECRET']
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'info@drive_school.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -123,10 +123,10 @@ Devise.setup do |config|
   # a value less than 10 in other environments. Note that, for bcrypt (the default
   # algorithm), the cost increases exponentially with the number of stretches (e.g.
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
-  config.stretches = Rails.env.test? ? 1 : 150_000
+  config.stretches = Rails.env.test? ? 1 : ENV['HASH_ITERATION']
 
   # Set up a pepper to generate the hashed password.
-  config.pepper = 'c00036c1ddaee7a532386e4cc955a44d1e5949ecd8de300734ca687819dc7a396e5cd7132ed9372265647d0e9dc617ab2877bce2f1e5c8fb21c9a1ed787468e7'
+  config.pepper = ENV['DEVISE_PEPPER']
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
