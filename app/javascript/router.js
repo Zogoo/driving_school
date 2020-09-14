@@ -9,11 +9,11 @@ export default new VueRouter({
     {
       path: "/",
       component: () => import("./views/Home"),
-      meta: { authRequired: true }
+      meta: { authRequired: true },
     },
-    { 
-      path: "/login", 
+    {
+      path: "/login",
       component: () => import("./views/Login"),
-    },
+    }
   ],
 });
