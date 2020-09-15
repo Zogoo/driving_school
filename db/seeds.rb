@@ -53,4 +53,4 @@ teacher.build_teacher(
   level: :professional
 )
 teacher.skip_confirmation!
-student.save!
+teacher.save!
