@@ -1,9 +1,9 @@
 class CreateSchedules < ActiveRecord::Migration[6.0]
   def change
     create_table :schedules do |t|
-      t.references :teachers, foreign_key: { on_delete: :cascade }
-      t.references :driving_lessons, foreign_key: { on_delete: :cascade }
-      t.references :theory_lessons, foreign_key: { on_delete: :cascade }
+      t.references :teacher, foreign_key: { on_delete: :cascade }
+      t.references :driving_lesson, foreign_key: { on_delete: :cascade }
+      t.references :theory_lesson, foreign_key: { on_delete: :cascade }
 
       t.string :title
       t.string :status

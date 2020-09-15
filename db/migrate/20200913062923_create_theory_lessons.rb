@@ -1,10 +1,10 @@
 class CreateTheoryLessons < ActiveRecord::Migration[6.0]
   def change
     create_table :theory_lessons do |t|
-      t.references :companies
-      t.references :teachers
-      t.references :schedules
-      t.references :bookings
+      t.references :company
+      t.references :teacher
+      t.references :schedule
+      t.references :booking
 
       t.string :title
       t.integer :duration

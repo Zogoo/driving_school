@@ -14,9 +14,9 @@ class User < ApplicationRecord
            foreign_key: :resource_owner_id,
            dependent: :delete_all # or :destroy if you need callbacks
 
-  has_one :profile, dependent: :destroy, inverse_of: :user
-  has_one :teacher, dependent: :destroy, inverse_of: :user
-  has_one :student, dependent: :destroy, inverse_of: :user
+  has_one :profile, dependent: :destroy
+  has_one :teacher, dependent: :destroy
+  has_one :student, dependent: :destroy
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

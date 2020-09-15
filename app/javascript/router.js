@@ -12,7 +12,7 @@ export default new VueRouter({
       meta: { authRequired: true },
     },
     {
-      path: "/login",
+      path: "/student/my_page",
       component: () => import("./views/Login"),
     }
   ],

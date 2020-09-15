@@ -2,9 +2,8 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
   def change
     create_table :profiles do |t|
       # Business model
-      t.references :users, foreign_key: { on_delete: :cascade }
+      t.references :user, foreign_key: { on_delete: :cascade }
 
-      t.string :portrait
       t.string :first_name
       t.string :last_name
       t.string :family_name
