@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_125321) do
   create_table "lesson_attachments", force: :cascade do |t|
     t.integer "theory_lesson_id"
     t.integer "driving_lesson_id"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["driving_lesson_id"], name: "index_lesson_attachments_on_driving_lesson_id"
@@ -114,6 +115,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_125321) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id"
+    t.string "portrait"
     t.string "first_name"
     t.string "last_name"
     t.string "family_name"
@@ -174,6 +176,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_125321) do
 
   create_table "theory_exam_attachments", force: :cascade do |t|
     t.integer "theory_exam_id"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["theory_exam_id"], name: "index_theory_exam_attachments_on_theory_exam_id"

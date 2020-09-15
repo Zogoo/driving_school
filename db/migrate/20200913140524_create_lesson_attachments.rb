@@ -4,6 +4,7 @@ class CreateLessonAttachments < ActiveRecord::Migration[6.0]
       t.references :theory_lesson, foreign_key: { on_delete: :cascade }
       t.references :driving_lesson, foreign_key: { on_delete: :cascade }
 
+      t.string :image
       t.timestamps
     end
   end
