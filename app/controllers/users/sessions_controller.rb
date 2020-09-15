@@ -3,12 +3,12 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
-  # GET /users/login
+  # GET /users/sign_in
   def new
     super
   end
 
-  # POST /users/login
+  # POST /users/sign_in
   def create
     super
   end

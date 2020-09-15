@@ -13,7 +13,13 @@ export default new VueRouter({
     },
     {
       path: "/student/my_page",
-      component: () => import("./views/Login"),
-    }
+      component: () => import("./views/student/Students"),
+      meta: { authRequired: true },
+    },
+    {
+      path: "/student/my_page",
+      component: () => import("./views/teacher/Teacher"),
+      meta: { authRequired: true },
+    },
   ],
 });

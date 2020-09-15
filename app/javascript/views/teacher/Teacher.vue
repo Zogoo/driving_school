@@ -11,7 +11,7 @@
 export default {
   data() {
     return {
-      message: "Student"
+      message: "Teacher"
     }
   }
 }

@@ -68,7 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const loggedIn = Vue.prototype.$auth.checkAuthenticated();
 
     if (authRequired && !loggedIn) {
-      return next("/users/login");
+      // return next("/users/login");
+      window.location = "/users/sign_in";
     }
 
     next();
