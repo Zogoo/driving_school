@@ -80,6 +80,15 @@ document.addEventListener("DOMContentLoaded", () => {
     i18n,
     vuetify,
     render: (h) => h(App),
+    async created() {
+      console.log("Access token stored");
+      if (
+        document.location.hash &&
+        document.location.hash.indexOf("access_token") >= 0
+      ) {
+        this.$auth.setAccessToken(document.location.hash.split("=")[1]);
+      }
+    }
   }).$mount("#app");
 
   document.body.appendChild(app.$el);

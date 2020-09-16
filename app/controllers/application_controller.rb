@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     origin_request = stored_location_for(resource)
-    byebug
     origin_request || (resource.teacher.present? ? '/teacher/my_page' : '/student/my_page')
   end
   
@@ -13,12 +12,10 @@ class ApplicationController < ActionController::Base
 
   def store_user_location!
     # :user is the scope we are authenticating
-    byebug
     store_location_for(:user, request.fullpath)
   end
 
   def storable_location?
-    byebug
     request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
   end
 end
