@@ -34,4 +34,6 @@ Rails.application.routes.draw do
   
   namespace :operator do
   end
+
+  resources :site, only: [:index, :show]
 end

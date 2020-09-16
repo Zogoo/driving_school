@@ -10,6 +10,7 @@ Doorkeeper.configure do
     if current_user
       current_user
     else
+      store_location_for(:user, request.fullpath)
       redirect_to(new_user_session_url)
       nil
     end
@@ -91,12 +92,12 @@ Doorkeeper.configure do
 
   # Authorization Code expiration time (default: 10 minutes).
   #
-  # authorization_code_expires_in 10.minutes
+  authorization_code_expires_in 10.minutes
 
   # Access token expiration time (default: 2 hours).
   # If you want to disable expiration, set this to `nil`.
   #
-  access_token_expires_in 2.hours
+  access_token_expires_in 8.hours
 
   # Assign custom TTL for access tokens. Will be used instead of access_token_expires_in
   # option if defined. In case the block returns `nil` value Doorkeeper fallbacks to
@@ -124,7 +125,7 @@ Doorkeeper.configure do
   # +ActionController::API+. The return value of this option must be a stringified class name.
   # See https://doorkeeper.gitbook.io/guides/configuration/other-configurations#custom-base-controller
   #
-  base_controller 'ApplicationController'
+  # base_controller 'ApplicationController'
 
   # Reuse access token for the same resource owner within an application (disabled by default).
   #
@@ -230,7 +231,7 @@ Doorkeeper.configure do
   # For more information go to
   # https://doorkeeper.gitbook.io/guides/ruby-on-rails/scopes
   #
-  # default_scopes  :public
+  default_scopes  :openid
   # optional_scopes :write, :update
 
   # Allows to restrict only certain scopes for grant_type.
@@ -347,7 +348,7 @@ Doorkeeper.configure do
   #   http://tools.ietf.org/html/rfc6819#section-4.4.2
   #   http://tools.ietf.org/html/rfc6819#section-4.4.3
   #
-  grant_flows %w[authorization_code client_credentials]
+  grant_flows %w[authorization_code implicit]
 
   # Allows to customize OAuth grant flows that +each+ application support.
   # You can configure a custom block (or use a class respond to `#call`) that must
@@ -488,7 +489,7 @@ Doorkeeper.configure do
 
   # WWW-Authenticate Realm (default: "Doorkeeper").
   #
-  # realm "Doorkeeper"
+  realm "dSchool"
 end
 
 Doorkeeper::JWT.configure do
