@@ -1,4 +1,4 @@
-class Teacher::MyPageController < ApplicationController
+class Teacher::MyPageController < ApiController
   before_action :doorkeeper_authorize!
 
   def index

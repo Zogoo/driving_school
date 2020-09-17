@@ -4,8 +4,28 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+tom_profile:
+  user: tom_student
+  portrait: <%= Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/images/sample.jpeg'), 'image/jpg') %>
+  first_name: <%= Faker::Name.first_name %>
+  last_name: <%= Faker::Name.last_name %>
+  family_name: <%= Faker::TvShows::GameOfThrones.house %>
+  registration_number: <%= "#{Faker::Name.initials(number:2)}#{23.years.ago.strftime('%y%m%d')}#{rand(100).to_s(10)}" %>
+  gender: <%= Faker::Gender.binary_type %>
+  birthday: <%= 23.years.ago.strftime('%y%m%d') %>
+  mobile_number: <%= Faker::Number.number(digits:8) %>
+  tel_number: <%= Faker::Number.number(digits:6) %>
+  home_address: <%= Faker::Address.full_address %>
+  work_address: <%= Faker::Address.full_address %>
+max_profile:
+  portrait: <%= Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/images/sample.jpeg'), 'image/jpg') %>
+  first_name: <%= Faker::Name.first_name %>
+  last_name: <%= Faker::Name.last_name %>
+  family_name: <%= Faker::TvShows::GameOfThrones.house %>
+  registration_number: <%= "#{Faker::Name.initials(number:2)}#{23.years.ago.strftime('%y%m%d')}#{rand(100).to_s(10)}" %>
+  gender: <%= Faker::Gender.binary_type %>
+  birthday: <%= 23.years.ago.strftime('%y%m%d') %>
+  mobile_number: <%= Faker::Number.number(digits:8) %>
+  tel_number: <%= Faker::Number.number(digits:6) %>
+  home_address: <%= Faker::Address.full_address %>
+  work_address: <%= Faker::Address.full_address %>
