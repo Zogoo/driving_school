@@ -8,7 +8,8 @@
 
 company = Company.find_or_create_by!(name: 'Example Co.,ltd')
 
-student = User.new(email: 'student@example.com', password: '!QAZ2wsx')
+student = User.find_or_initialize_by(email: 'student@example.com')
+student.password = '!QAZ2wsx'
 student.build_profile(
   family_name: 'Borjigon',
   first_name: 'Student',
@@ -31,7 +32,8 @@ student.build_student(
 student.skip_confirmation!
 student.save!
 
-teacher = User.new(email: 'teacher@example.com', password: '!QAZ2wsx')
+teacher = User.find_or_initialize_by(email: 'teacher@example.com')
+teacher.password = '!QAZ2wsx'
 teacher.build_profile(
   family_name: 'Hothoid',
   first_name: 'Teacher',
