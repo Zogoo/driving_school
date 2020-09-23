@@ -18,6 +18,14 @@ Compatible libraries version
 1. Visit OAuth application url: http://localhost:3000/operator/oauth/applications
 2. Create new application
 
+If you need to test OAuth implicit workflow
+
+1. Enter OAuth application 
+2. Copy link from "Authorize" button
+3. Change from response_type=code to response_type=token
+4. Access to that url
+5. You will redirected to your callback url and you will access_token parameter in the url
+
 ## Test users
 
 User name: student@example.com
