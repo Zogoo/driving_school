@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     origin_request = stored_location_for(resource)
     origin_request || (resource.teacher.present? ? '/teacher/my_page' : '/student/my_page')
   end
-  
+
   private
 
   def store_user_location!
@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def storable_location?
-    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
   end
 end

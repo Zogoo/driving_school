@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
@@ -43,7 +43,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Image uploader
 gem 'carrierwave'
-gem 'fog'
+gem 'fog-core'
+gem 'fog-aws'
+gem 'fog-xml'
+gem 'fog-json'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

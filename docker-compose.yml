@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: back-end
+    build: .
+    env_file:
+      - env.development
+    volumes:
+      - bundler-cache:/bundler
+      - .:/app
+      - server-uploads:public/uploads
+      - server-tmp:/app/tmp
+      - server-logs:/app/logs
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    working_dir: /app
+    command: bin/rails s -b0 -p 3000
+    ports:
+      - 3000:3000
+  postgres:
+    container_name: app-db
+    image: postgres:12.4
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Vai7Ob0jjoom4At3Ahth3aec
+volumes:
+  postgres-data:
+  server-uploads:
+  server-tmp:
+  server-logs:
+  bundler-cache:
