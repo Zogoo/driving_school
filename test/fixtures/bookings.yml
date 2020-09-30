@@ -4,8 +4,13 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+tom_bookings:
+  teacher: max_max
+  student: tom
+  schedule: max_driving_schedule
+  driving_lesson: max_driving_lesson
+  title: "Mad max's driving lesson"
+  start: <%= Time.now + 1.week + 1.hours %>
+  duration: 2
+  cost: 6_000
+  refunded: false

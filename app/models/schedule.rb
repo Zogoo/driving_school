@@ -10,4 +10,6 @@ class Schedule < ApplicationRecord
 
   has_many :bookings
   accepts_nested_attributes_for :bookings
+
+  enum status: %i[active canceled suspended]
 end

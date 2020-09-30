@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   
   namespace :student do
     resources :my_page
+    resources :bookings
+    resources :lesson
     resource :profile, except: [:destroy, :edit]
   end
   

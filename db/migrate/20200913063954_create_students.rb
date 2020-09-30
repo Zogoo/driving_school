@@ -3,7 +3,7 @@ class CreateStudents < ActiveRecord::Migration[6.0]
     create_table :students do |t|
       t.references :company
       t.references :user, foreign_key: { on_cascade: :delete }
-      t.integer :status
+      t.integer :status, default: 0, null: false
       t.date :start
       t.date :finish
       t.integer :payment

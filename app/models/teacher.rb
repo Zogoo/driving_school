@@ -15,5 +15,5 @@ class Teacher < ApplicationRecord
   accepts_nested_attributes_for :driving_lessons
 
   enum status: %i[pending active suspended in_holiday blocked]
-  enum leve: %i[junior intermediate advanced professional]
+  enum level: %i[junior intermediate advanced professional]
 end

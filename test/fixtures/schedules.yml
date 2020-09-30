@@ -4,8 +4,10 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+max_driving_schedule:
+  teacher: mad_max
+  title: '4 people lesson'
+  status: 0 # active
+  step: 30 # 30 minutes
+  start: <%= Time.now + 1.week %>
+  finish: <%= Time.now + 1.week + 3.hours %>

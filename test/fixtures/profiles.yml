@@ -5,7 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 tom_profile:
-  user: tom_student
+  user: tom
   portrait: <%= Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/images/sample.jpeg'), 'image/jpg') %>
   first_name: <%= Faker::Name.first_name %>
   last_name: <%= Faker::Name.last_name %>

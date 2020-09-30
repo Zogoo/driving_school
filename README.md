@@ -36,3 +36,38 @@ Password: !QAZ2wsx
 ## About API document
 
 TODO: To use swagger for API documentation
+
+## Controller rule
+
+All controllers should be designed as RESTFul API and if you use `resources` in the routes
+you need to use following methods
+
+```ruby
+  # GET /student/schedules
+  def index
+  end
+
+  # POST /student/schedules
+  def create
+  end
+
+  # GET /student/schedules/new
+  def new
+  end
+
+  # GET /student/schedules/:id/edit
+  def edit
+  end
+
+  # GET /student/schedules/:id
+  def show
+  end
+
+  # PUT or PATCH /student/schedules/:id
+  def update
+  end
+
+  # DELETE /student/schedules/:id
+  def destroy
+  end
+```

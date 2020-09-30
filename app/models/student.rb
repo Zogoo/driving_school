@@ -6,5 +6,4 @@ class Student < ApplicationRecord
   accepts_nested_attributes_for :bookings
 
   enum status: %i[pending active suspended blocked]
-  
 end

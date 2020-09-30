@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 2020_09_14_125321) do
     t.string "title"
     t.datetime "start"
     t.integer "duration"
-    t.string "status"
-    t.string "cancel_reason"
+    t.string "status", default: "0", null: false
+    t.string "cancel_reason", default: "", null: false
     t.integer "cost"
-    t.boolean "refunded"
+    t.boolean "refunded", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["driving_lesson_id"], name: "index_bookings_on_driving_lesson_id"
@@ -136,7 +136,8 @@ ActiveRecord::Schema.define(version: 2020_09_14_125321) do
     t.integer "driving_lesson_id"
     t.integer "theory_lesson_id"
     t.string "title"
-    t.string "status"
+    t.integer "status", default: 0, null: false
+    t.integer "step"
     t.datetime "start"
     t.datetime "finish"
     t.datetime "created_at", precision: 6, null: false
@@ -150,7 +151,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_125321) do
   create_table "students", force: :cascade do |t|
     t.integer "company_id"
     t.integer "user_id"
-    t.integer "status"
+    t.integer "status", default: 0, null: false
     t.date "start"
     t.date "finish"
     t.integer "payment"
@@ -164,10 +165,10 @@ ActiveRecord::Schema.define(version: 2020_09_14_125321) do
   create_table "teachers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "company_id"
-    t.integer "status"
+    t.integer "status", default: 0, null: false
     t.string "title"
     t.string "experience"
-    t.integer "level"
+    t.integer "level", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_teachers_on_company_id"

@@ -4,8 +4,9 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+tom_student:
+  user: :tom
+  start: <%= 1.month.ago %>
+  finish: <%= Time.current.since(1.month) %>
+  status: 1 # active
+  payment: 300_000

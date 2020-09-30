@@ -21,3 +21,5 @@ Style/Documentation:
 Metrics/MethodLength:
   CountComments: true  # count full line comments?
   Max: 15
+Style/EmptyMethod:
+  Enabled: false
