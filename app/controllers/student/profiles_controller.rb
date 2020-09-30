@@ -1,6 +1,4 @@
 class Student::ProfilesController < ApiController
-  
-
   def new
     profile = current_resource_owner.build_profile
     render json: profile.as_json
@@ -10,7 +8,7 @@ class Student::ProfilesController < ApiController
     profile = current_resource_owner.build_profile(profile_params)
     if profile.valid?
       profile.save!
-      render text: 'Successfully created', status: 404
+      render json: { msg: 'Successfully created' }
     else
       render json: user.errors.full_messages.to_json, status: 404
     end
@@ -25,7 +23,7 @@ class Student::ProfilesController < ApiController
     profile = current_resource_owner.build_profile(profile_params)
     if profile.valid?
       profile.save!
-      render text: 'Successfully created', status: 404
+      render json: { msg: 'Successfully created' }
     else
       render json: user.errors.full_messages.to_json, status: 404
     end

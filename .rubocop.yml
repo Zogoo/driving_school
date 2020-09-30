@@ -12,3 +12,12 @@ AllCops:
     - bin/**/*
     - node_modules/**/*
     - tmp/**/*
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Metrics/MethodLength:
+  CountComments: true  # count full line comments?
+  Max: 15
