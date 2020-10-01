@@ -10,7 +10,7 @@ class Student::ProfilesController < ApiController
       profile.save!
       render json: { msg: 'Successfully created' }
     else
-      render json: user.errors.full_messages.to_json, status: 404
+      render json: user.errors.full_messages.to_json, status: 400
     end
   end
 
@@ -25,7 +25,7 @@ class Student::ProfilesController < ApiController
       profile.save!
       render json: { msg: 'Successfully created' }
     else
-      render json: user.errors.full_messages.to_json, status: 404
+      render json: user.errors.full_messages.to_json, status: 400
     end
   end
 

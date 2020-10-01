@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_125321) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.integer "teacher_id"
+    t.integer "teacher_id", null: false
     t.integer "driving_lesson_id"
     t.integer "theory_lesson_id"
     t.string "title"
@@ -163,12 +163,12 @@ ActiveRecord::Schema.define(version: 2020_09_14_125321) do
   end
 
   create_table "teachers", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.integer "company_id"
-    t.integer "status", default: 0, null: false
     t.string "title"
-    t.string "experience"
+    t.integer "status", default: 0, null: false
     t.integer "level", default: 0, null: false
+    t.string "experience"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_teachers_on_company_id"
@@ -260,6 +260,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_125321) do
   add_foreign_key "schedules", "teachers", on_delete: :cascade
   add_foreign_key "schedules", "theory_lessons", on_delete: :cascade
   add_foreign_key "students", "users"
+  add_foreign_key "teachers", "companies"
   add_foreign_key "teachers", "users"
   add_foreign_key "theory_exam_attachments", "theory_exams"
   add_foreign_key "theory_exams", "companies"

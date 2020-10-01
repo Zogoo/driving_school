@@ -5,9 +5,10 @@
 # below each fixture, per the syntax in the comments below
 #
 max_driving_schedule:
-  teacher: mad_max
+  teacher: max_teacher
+  driving_lesson: max_driving_lesson
   title: '4 people lesson'
   status: 0 # active
   step: 30 # 30 minutes
-  start: <%= Time.now + 1.week %>
-  finish: <%= Time.now + 1.week + 3.hours %>
+  start: <%= Time.current + 1.week %>
+  finish: <%= Time.current + 1.week + 3.hours %>

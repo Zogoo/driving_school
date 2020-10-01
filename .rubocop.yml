@@ -23,3 +23,5 @@ Metrics/MethodLength:
   Max: 15
 Style/EmptyMethod:
   Enabled: false
+Layout/LineLength:
+  Max: 180

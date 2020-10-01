@@ -1,2 +1,2 @@
-class Teacher::ProfilesController < ApiController
+class Teacher::ProfilesController < Teacher::BaseController
 end

@@ -26,13 +26,14 @@ Rails.application.routes.draw do
   
   namespace :teacher do
     resources :my_page
+    resources :schedule
     resource :profile, except: [:destroy, :edit]
   end
   
   namespace :student do
     resources :my_page
     resources :bookings
-    resources :lesson
+    resources :lessons
     resource :profile, except: [:destroy, :edit]
   end
   

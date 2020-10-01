@@ -1,5 +1,6 @@
 class ApiController < ActionController::Base
   rescue_from ActionController::ParameterMissing, with: :missing_params
+  rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
   include CommonErrorHelper
 
   before_action :doorkeeper_authorize!

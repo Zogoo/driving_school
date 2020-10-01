@@ -1,4 +1,4 @@
-class Student::BookingsController < ApplicationController
+class Student::BookingsController < Student::BaseController
   # GET	/student/bookings
   def index
   end

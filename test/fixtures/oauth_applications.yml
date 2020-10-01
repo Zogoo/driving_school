@@ -4,6 +4,6 @@ mobile_app:
   secret: 'i6K_YE0EiyH5utZ9IJbeREcuQOuFo6l9HCEY23CpYGQ'
   redirect_uri: 'http://localhost:3000/'
   scopes: 'openid'
-  created_at: <%= Time.now %>
-  updated_at: <%= Time.now %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
   confidential: true

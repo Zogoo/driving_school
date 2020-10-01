@@ -1,6 +1,6 @@
 class Teacher < ApplicationRecord
-  belongs_to :company
   belongs_to :user
+  belongs_to :company, optional: true
 
   has_many :schedules, dependent: :destroy
   accepts_nested_attributes_for :schedules
